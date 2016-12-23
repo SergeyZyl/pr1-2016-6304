@@ -14,21 +14,19 @@ struct MusicalComposition {
 typedef struct MusicalComposition MusicalComposition;
 
 void PermutationRegarding_n(MusicalComposition* ptr, int n){
-
+	//Создаем указатель, счетчик i, чтобы дойти до нужного индекса и промежуточные переменные, нужные для swap функции
 	MusicalComposition *headprev; 
 	int i=1;
 	char fname[80];
 	char fauthor[80];
 	int fyear;
-
+	// доходим до нужного элемента в списке
 	while (i!=n){ptr=ptr->next; i++;}
-
+	//присваиваем его значение созданному нами ранее указателю
 	headprev=ptr;
-
+	пока существует предыдущие и последующие элементы в списке
 	while ((headprev->prev) && (ptr->next)){
-
-		
-
+		// функция swap, главной особенностью здесь является то, что мы перставляем значения массивов
 		strcpy(fname,headprev->prev->name);
 		strcpy(fauthor,headprev->prev->author);
 		fyear=headprev->prev->year;
@@ -40,8 +38,9 @@ void PermutationRegarding_n(MusicalComposition* ptr, int n){
 		strcpy(ptr->next->name,fname);
 		strcpy(ptr->next->author,fauthor);
 		ptr->next->year=fyear;
-
+		// присваиваем указателю адрес предыдущего элемента
 		headprev=headprev->prev;
+		// присваиваем указателю адрес следующего элемента
 		ptr=ptr->next;
 	}
 }
